@@ -1,0 +1,203 @@
+SET-A:
+fybca109=> create table supplier_master (supplier_no int, supplier_name varchar(30), city varchar(20), phone_no bigint, amount real);
+CREATE TABLE
+
+fybca109=> \d supplier_master
+          Table "public.supplier_master"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ supplier_no   | integer               | 
+ supplier_name | character varying(30) | 
+ city          | character varying(20) | 
+ phone_no      | bigint                | 
+ amount        | real                  | 
+
+Q1:
+fybca109=> alter table supplier_master add primary key(supplier_no);
+NOTICE:  ALTER TABLE / ADD PRIMARY KEY will create implicit index "supplier_master_pkey" for table "supplier_master"
+ALTER TABLE
+
+fybca109=> \d supplier_master
+          Table "public.supplier_master"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ supplier_no   | integer               | not null
+ supplier_name | character varying(30) | 
+ city          | character varying(20) | 
+ phone_no      | bigint                | 
+ amount        | real                  | 
+Indexes:
+    "supplier_master_pkey" PRIMARY KEY, btree (supplier_no)
+______________________________________________________________________________________________________________________
+
+Q2:                                                      
+fybca109=> alter table supplier_master add constraint city_check check (city in('pune','mumbai','calcutta'));
+ALTER TABLE
+
+fybca109=> \d supplier_master
+          Table "public.supplier_master"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ supplier_no   | integer               | not null
+ supplier_name | character varying(30) | 
+ city          | character varying(20) | 
+ phone_no      | bigint                | 
+ amount        | real                  | 
+Indexes:
+    "supplier_master_pkey" PRIMARY KEY, btree (supplier_no)
+Check constraints:
+    "city_check" CHECK (city::text = ANY (ARRAY['pune'::character varying, 'mumbai'::character varying, 'calcutta'::character varying]::text[]))
+______________________________________________________________________________________________________________________
+
+Q3:
+fybca109=> alter table supplier_master drop column phone_no ;
+ALTER TABLE
+
+fybca109=> \d supplier_master
+          Table "public.supplier_master"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ supplier_no   | integer               | not null
+ supplier_name | character varying(30) | 
+ city          | character varying(20) | 
+ amount        | real                  | 
+Indexes:
+    "supplier_master_pkey" PRIMARY KEY, btree (supplier_no)
+Check constraints:
+    "city_check" CHECK (city::text = ANY (ARRAY['pune'::character varying, 'mumbai'::character varying, 'calcutta'::character varying]::text[]))
+______________________________________________________________________________________________________________________
+
+Q4:
+fybca109=> alter table supplier_master alter column supplier_name type varchar(50);
+ALTER TABLE
+
+fybca109=> \d supplier_master
+          Table "public.supplier_master"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ supplier_no   | integer               | not null
+ supplier_name | character varying(50) | 
+ city          | character varying(20) | 
+ amount        | real                  | 
+Indexes:
+    "supplier_master_pkey" PRIMARY KEY, btree (supplier_no)
+Check constraints:
+    "city_check" CHECK (city::text = ANY (ARRAY['pune'::character varying, 'mumbai'::character varying, 'calcutta'::character varying]::text[]))
+______________________________________________________________________________________________________________________
+
+Q5:
+fybca109=> alter table supplier_master drop constraint city_check ;
+ALTER TABLE
+
+fybca109=> \d supplier_master
+          Table "public.supplier_master"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ supplier_no   | integer               | not null
+ supplier_name | character varying(50) | 
+ city          | character varying(20) | 
+ amount        | real                  | 
+Indexes:
+    "supplier_master_pkey" PRIMARY KEY, btree (supplier_no)
+______________________________________________________________________________________________________________________
+
+Q6:
+fybca109=> drop table supplier_master ;
+DROP TABLE
+
+fybca109=> \d supplier_master
+Did not find any relation named "supplier_master".
+______________________________________________________________________________________________________________________
+
+SET-B:
+Q1:
+fybca109=> drop table employee ;
+DROP TABLE
+fybca109=> create table employee(eno int, ename varchar(20), sal real);
+CREATE TABLE
+
+fybca109=> alter table employee add column desg varchar(20) check (desg in ('manager','clerk'));
+ALTER TABLE
+
+fybca109=> \d employee 
+          Table "public.employee"
+ Column |         Type          | Modifiers 
+--------+-----------------------+-----------
+ eno    | integer               | 
+ ename  | character varying(20) | 
+ sal    | real                  | 
+ desg   | character varying(20) | 
+Check constraints:
+    "employee_desg_check" CHECK (desg::text = ANY (ARRAY['manager'::character varying, 'clerk'::character varying]::text[]))
+______________________________________________________________________________________________________________________
+
+Q2:
+fybca109=> drop table student;
+DROP TABLE
+
+fybca109=> create table student (student_no int, sname varchar(20), date_of_birth date);
+CREATE TABLE
+fybca109=> \d student
+              Table "public.student"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ student_no    | integer               | 
+ sname         | character varying(20) | 
+ date_of_birth | date                  | 
+
+fybca109=> alter table student add column address text not null;
+ALTER TABLE
+fybca109=> alter table student add column phone int;
+ALTER TABLE
+
+fybca109=> \d student
+              Table "public.student"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ student_no    | integer               | 
+ sname         | character varying(20) | 
+ date_of_birth | date                  | 
+ address       | text                  | not null
+ phone         | integer               | 
+______________________________________________________________________________________________________________________
+
+Q3:
+fybca109=> create table project(pno int primary key, pname varchar(20));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "project_pkey" for table "project"
+CREATE TABLE
+
+fybca109=> alter table project add constraint name_check check (pname like 'R%');
+ALTER TABLE
+
+fybca109=> \d project
+           Table "public.project"
+ Column |         Type          | Modifiers 
+--------+-----------------------+-----------
+ pno    | integer               | not null
+ pname  | character varying(20) | 
+Indexes:
+    "project_pkey" PRIMARY KEY, btree (pno)
+Check constraints:
+    "name_check" CHECK (pname::text ~~ 'R%'::text)
+______________________________________________________________________________________________________________________
+
+Q4:
+fybca109=> create table hospital (hno int primary key, hname varchar(20));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "hospital_pkey" for table "hospital"
+CREATE TABLE
+
+fybca109=> alter table hospital add column hbudget int check (hbudget > 50000);
+ALTER TABLE
+
+fybca109=> \d hospital
+           Table "public.hospital"
+ Column  |         Type          | Modifiers 
+---------+-----------------------+-----------
+ hno     | integer               | not null
+ hname   | character varying(20) | 
+ hbudget | integer               | 
+Indexes:
+    "hospital_pkey" PRIMARY KEY, btree (hno)
+Check constraints:
+    "hospital_hbudget_check" CHECK (hbudget > 50000)
+

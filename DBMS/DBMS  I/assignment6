@@ -1,0 +1,74 @@
+SET-A:
+Q1:
+fybca109=> create table machine(machine_id int primary key, machine_name varchar(50) NOT NULL check(machine_name=upper(machine_name)), machine_type varchar(10) check(machine_type in('drilling','milling','lathe','turning','grinding')), machine_price real check(machine_price>0), machine_cost real, check(machine_cost<machine_price));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "machine_pkey" for table "machine"
+CREATE TABLE
+
+fybca109=> \d machine
+              Table "public.machine"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ machine_id    | integer               | not null
+ machine_name  | character varying(50) | not null
+ machine_type  | character varying(10) | 
+ machine_price | real                  | 
+ machine_cost  | real                  | 
+Indexes:
+    "machine_pkey" PRIMARY KEY, btree (machine_id)
+Check constraints:
+    "machine_check" CHECK (machine_cost < machine_price)
+    "machine_machine_name_check" CHECK (machine_name::text = upper(machine_name::text))
+    "machine_machine_price_check" CHECK (machine_price > 0::double precision)
+    "machine_machine_type_check" CHECK (machine_type::text = ANY (ARRAY['drilling'::character varying, 'milling'::character varying, 'lathe'::character varying, 'turning'::character varying, 'grinding'::character varying]::text[]))
+_______________________________________________________________________________________________________________________
+
+Q2:
+fybca109=> create table employee(employee_id int primary key, employee_name varchar(50) not null check(employee_name=upper(employee_name)), employee_desg varchar(10) check(employee_desg in('manager','staff','worker')), employee_salary float check (employee_salary > 0), employee_uid int unique, check(employee_id != employee_uid));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "employee_pkey" for table "employee"
+NOTICE:  CREATE TABLE / UNIQUE will create implicit index "employee_employee_uid_key" for table "employee"
+CREATE TABLE
+
+fybca109=> \d employee
+               Table "public.employee"
+     Column      |         Type          | Modifiers 
+-----------------+-----------------------+-----------
+ employee_id     | integer               | not null
+ employee_name   | character varying(50) | not null
+ employee_desg   | character varying(10) | 
+ employee_salary | double precision      | 
+ employee_uid    | integer               | 
+Indexes:
+    "employee_pkey" PRIMARY KEY, btree (employee_id)
+    "employee_employee_uid_key" UNIQUE CONSTRAINT, btree (employee_uid)
+Check constraints:
+    "employee_check" CHECK (employee_id <> employee_uid)
+    "employee_employee_desg_check" CHECK (employee_desg::text = ANY (ARRAY['manager'::character varying, 'staff'::character varying, 'worker'::character varying]::text[]))
+    "employee_employee_name_check" CHECK (employee_name::text = upper(employee_name::text))
+    "employee_employee_salary_check" CHECK (employee_salary > 0::double precision)
+_______________________________________________________________________________________________________________________
+
+SET-B:
+Q1:
+fybca109=> create table student1(student_id int primary key, student_name varchar(50) not null check(student_name=upper(student_name)), student_class varchar(10) check(student_class in('FY','SY','TY')), student_marks float check (student_marks > 0), student_uid int unique, check(student_id != student_uid));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "student1_pkey" for table "student1"
+NOTICE:  CREATE TABLE / UNIQUE will create implicit index "student1_student_uid_key" for table "student1"
+CREATE TABLE
+
+fybca109=> \d student1
+              Table "public.student1"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ student_id    | integer               | not null
+ student_name  | character varying(50) | not null
+ student_class | character varying(10) | 
+ student_marks | double precision      | 
+ student_uid   | integer               | 
+Indexes:
+    "student1_pkey" PRIMARY KEY, btree (student_id)
+    "student1_student_uid_key" UNIQUE CONSTRAINT, btree (student_uid)
+Check constraints:
+    "student1_check" CHECK (student_id <> student_uid)
+    "student1_student_class_check" CHECK (student_class::text = ANY (ARRAY['FY'::character varying, 'SY'::character varying, 'TY'::character varying]::text[]))
+    "student1_student_marks_check" CHECK (student_marks > 0::double precision)
+    "student1_student_name_check" CHECK (student_name::text = upper(student_name::text))
+

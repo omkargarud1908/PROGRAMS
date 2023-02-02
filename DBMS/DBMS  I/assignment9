@@ -1,0 +1,169 @@
+SET-A:
+
+fybca109=> create table emp(empno int primary key, name varchar(30), address text, sal real, deptno int);
+CREATE TABLE
+
+Q1]
+fybca109=> select * from emp ;
+ empno |   name    | address |  sal  | deptno 
+-------+-----------+---------+-------+--------
+   101 | nikhil    | pune    | 16000 |     10
+   102 | sanskruti | nashik  | 20000 |     10
+   103 | vansh     | nashik  | 12000 |     20
+   104 | saurabh   | pune    | 15000 |     10
+   105 | ajinkya   | pune    | 10000 |     10
+   106 | harsh     | mumbai  | 21000 |     30
+   107 | utkarsh   | pune    | 13000 |     20
+   108 | kunal     | nashik  | 17000 |     30
+   109 | bharti    | mumbai  | 19000 |     30
+   110 | daksh     | nashik  |  9000 |     20
+(10 rows)
+
+Q2]
+fybca109=> select empno, name from emp ;
+ empno |   name    
+-------+-----------
+   101 | nikhil
+   102 | sanskruti
+   103 | vansh
+   104 | saurabh
+   105 | ajinkya
+   106 | harsh
+   107 | utkarsh
+   108 | kunal
+   109 | bharti
+   110 | daksh
+(10 rows)
+
+Q3]
+fybca109=> select distinct deptno from emp ;
+ deptno 
+--------
+     30
+     10
+     20
+(3 rows)
+
+Q4]
+fybca109=> select * from emp where deptno = 10;
+ empno |   name    | address |  sal  | deptno 
+-------+-----------+---------+-------+--------
+   101 | nikhil    | pune    | 16000 |     10
+   102 | sanskruti | nashik  | 20000 |     10
+   104 | saurabh   | pune    | 15000 |     10
+   105 | ajinkya   | pune    | 10000 |     10
+(4 rows)
+
+Q5]
+fybca109=> select * from emp where address = 'pune' and sal > 15000;
+ empno |  name  | address |  sal  | deptno 
+-------+--------+---------+-------+--------
+   101 | nikhil | pune    | 16000 |     10
+(1 row)
+
+Q6]
+fybca109=> select * from emp where address = 'pune' and sal between 10000 and 15000;
+ empno |  name   | address |  sal  | deptno 
+-------+---------+---------+-------+--------
+   104 | saurabh | pune    | 15000 |     10
+   105 | ajinkya | pune    | 10000 |     10
+   107 | utkarsh | pune    | 13000 |     20
+(3 rows)
+
+Q7]
+fybca109=> select * from emp where name like 'van%';
+ empno | name  | address |  sal  | deptno 
+-------+-------+---------+-------+--------
+   103 | vansh | nashik  | 12000 |     20
+(1 row)
+
+Q8]
+fybca109=> select * from emp where name like '%sh%';
+ empno |  name   | address |  sal  | deptno 
+-------+---------+---------+-------+--------
+   103 | vansh   | nashik  | 12000 |     20
+   106 | harsh   | mumbai  | 21000 |     30
+   107 | utkarsh | pune    | 13000 |     20
+   110 | daksh   | nashik  |  9000 |     20
+(4 rows)
+
+Q9]
+fybca109=> select * from emp where sal = NULL;
+ empno | name | address | sal | deptno 
+-------+------+---------+-----+--------
+(0 rows)
+
+Q10]
+fybca109=> select * from emp order by empno;
+ empno |   name    | address |  sal  | deptno 
+-------+-----------+---------+-------+--------
+   101 | nikhil    | pune    | 16000 |     10
+   102 | sanskruti | nashik  | 20000 |     10
+   103 | vansh     | nashik  | 12000 |     20
+   104 | saurabh   | pune    | 15000 |     10
+   105 | ajinkya   | pune    | 10000 |     10
+   106 | harsh     | mumbai  | 21000 |     30
+   107 | utkarsh   | pune    | 13000 |     20
+   108 | kunal     | nashik  | 17000 |     30
+   109 | bharti    | mumbai  | 19000 |     30
+   110 | daksh     | nashik  |  9000 |     20
+(10 rows)
+
+Q11]
+fybca109=> select * from emp order by deptno, empno;
+ empno |   name    | address |  sal  | deptno 
+-------+-----------+---------+-------+--------
+   101 | nikhil    | pune    | 16000 |     10
+   102 | sanskruti | nashik  | 20000 |     10
+   104 | saurabh   | pune    | 15000 |     10
+   105 | ajinkya   | pune    | 10000 |     10
+   103 | vansh     | nashik  | 12000 |     20
+   107 | utkarsh   | pune    | 13000 |     20
+   110 | daksh     | nashik  |  9000 |     20
+   106 | harsh     | mumbai  | 21000 |     30
+   108 | kunal     | nashik  | 17000 |     30
+   109 | bharti    | mumbai  | 19000 |     30
+(10 rows)
+
+Q12]
+fybca109=> select deptno as department, sum(sal) as total from emp group by deptno order by deptno;
+ department | total 
+------------+-------
+         10 | 61000
+         20 | 34000
+         30 | 57000
+(3 rows)
+
+Q13]
+fybca109=> select deptno as department, count(empno) as total_emp from emp group by deptno having count(empno)>2 order by deptno;
+ department | total_emp 
+------------+-----------
+         10 |         4
+         20 |         3
+         30 |         3
+(3 rows)
+
+Q14]
+fybca109=> select avg(sal) from emp ;
+  avg  
+-------
+ 15200
+(1 row)
+
+Q15]
+fybca109=> select max(sal),deptno from emp group by deptno having max(sal)>20000;
+  max  | deptno 
+-------+--------
+ 21000 |     30
+(1 row)
+
+Q16]
+fybca109=> select deptno,min(sal) from emp group by deptno order by deptno ;
+ deptno |  min  
+--------+-------
+     10 | 10000
+     20 |  9000
+     30 | 17000
+(3 rows)
+
+

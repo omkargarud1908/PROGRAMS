@@ -1,0 +1,134 @@
+SET-A: 
+Q1:
+fybca109=> create table player(player_id int primary key, name varchar(50), birth_date date, birth_place varchar(100));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "player_pkey" for table "player"
+CREATE TABLE
+
+fybca109=> \d player
+              Table "public.player"
+   Column    |          Type          | Modifiers 
+-------------+------------------------+-----------
+ player_id   | integer                | not null
+ name        | character varying(50)  | 
+ birth_date  | date                   | 
+ birth_place | character varying(100) | 
+Indexes:
+    "player_pkey" PRIMARY KEY, btree (player_id)
+______________________________________________________________________________________________________________________
+
+Q2:
+fybca109=> create table student(roll_no int, class varchar(20), weight numeric(6,2), height numeric(6,2), primary key(roll_no, class));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "student_pkey" for table "student"
+CREATE TABLE
+
+fybca109=> \d student
+           Table "public.student"
+ Column  |         Type          | Modifiers 
+---------+-----------------------+-----------
+ roll_no | integer               | not null
+ class   | character varying(20) | not null
+ weight  | numeric(6,2)          | 
+ height  | numeric(6,2)          | 
+Indexes:
+    "student_pkey" PRIMARY KEY, btree (roll_no, class)
+______________________________________________________________________________________________________________________
+
+Q3:
+fybca109=> create table project(project_id integer primary key, project_name varchar(20), project_description text, status boolean);
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "project_pkey" for table "project"
+CREATE TABLE
+
+fybca109=> \d project
+                 Table "public.project"
+       Column        |         Type          | Modifiers 
+---------------------+-----------------------+-----------
+ project_id          | integer               | not null
+ project_name        | character varying(20) | 
+ project_description | text                  | 
+ status              | boolean               | 
+Indexes:
+    "project_pkey" PRIMARY KEY, btree (project_id)
+______________________________________________________________________________________________________________________
+
+Q4:
+fybca109=> create table donor(donor_no int primary key, donor_name varchar(50), blood_group char(6), last_date date);
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "donor_pkey" for table "donor"
+CREATE TABLE
+
+fybca109=> \d donor
+              Table "public.donor"
+   Column    |         Type          | Modifiers 
+-------------+-----------------------+-----------
+ donor_no    | integer               | not null
+ donor_name  | character varying(50) | 
+ blood_group | character(6)          | 
+ last_date   | date                  | 
+Indexes:
+    "donor_pkey" PRIMARY KEY, btree (donor_no)
+______________________________________________________________________________________________________________________
+
+SET-B:
+Q1:
+fybca109=> create table property(property_id int primary key, property_desc varchar(30), area text, rate float(8), agri_status varchar(30));NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "property_pkey" for table "property"
+CREATE TABLE
+
+fybca109=> \d property
+              Table "public.property"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ property_id   | integer               | not null
+ property_desc | character varying(30) | 
+ area          | text                  | 
+ rate          | real                  | 
+ agri_status   | character varying(30) | 
+Indexes:
+    "property_pkey" PRIMARY KEY, btree (property_id)
+______________________________________________________________________________________________________________________
+
+Q2:
+fybca109=> create table actor(actor_id int primary key, actor_name varchar(20), birth_date date);
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "actor_pkey" for table "actor"
+CREATE TABLE
+
+fybca109=> \d actor
+              Table "public.actor"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ actor_id   | integer               | not null
+ actor_name | character varying(20) | 
+ birth_date | date                  | 
+Indexes:
+    "actor_pkey" PRIMARY KEY, btree (actor_id)
+______________________________________________________________________________________________________________________
+
+Q3:
+fybca109=> create table movie(movie_no int primary key, name varchar(20), release_year int);
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "movie_pkey" for table "movie"
+CREATE TABLE
+
+fybca109=> \d movie
+               Table "public.movie"
+    Column    |         Type          | Modifiers 
+--------------+-----------------------+-----------
+ movie_no     | integer               | not null
+ name         | character varying(20) | 
+ release_year | integer               | 
+Indexes:
+    "movie_pkey" PRIMARY KEY, btree (movie_no)
+______________________________________________________________________________________________________________________
+
+Q4:
+fybca109=> create table hospital(hno int primary key, hname varchar(20), hcity varchar(20));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "hospital_pkey" for table "hospital"
+CREATE TABLE
+
+fybca109=> \d hospital
+          Table "public.hospital"
+ Column |         Type          | Modifiers 
+--------+-----------------------+-----------
+ hno    | integer               | not null
+ hname  | character varying(20) | 
+ hcity  | character varying(20) | 
+Indexes:
+    "hospital_pkey" PRIMARY KEY, btree (hno)
+

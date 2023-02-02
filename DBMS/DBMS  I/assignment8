@@ -1,0 +1,66 @@
+SET-B]
+Q1]
+
+fybca109=> create table owner(ono int primary key, address text, phone bigint);
+CREATE TABLE
+
+fybca109=> create table property(pno int primary key, description text, area varchar(20), ono int references owner(ono) on delete cascade on update cascade);
+CREATE TABLE
+
+fybca109=> \d property
+                       Table "public.property"
+   Column    |         Type          | Collation | Nullable | Default 
+-------------+-----------------------+-----------+----------+---------
+ pno         | integer               |           | not null | 
+ description | text                  |           |          | 
+ area        | character varying(20) |           |          | 
+ ono         | integer               |           |          | 
+Indexes:
+    "property_pkey" PRIMARY KEY, btree (pno)
+Foreign-key constraints:
+    "property_ono_fkey" FOREIGN KEY (ono) REFERENCES owner(ono) ON UPDATE CASCADE ON DELETE CASCADE
+
+[A]
+fybca109=> insert into owner values(101, 'pune', 9918827488);
+INSERT 0 1
+fybca109=> insert into owner values(102, 'mumbai', 9984547488);
+INSERT 0 1
+
+fybca109=> select * from owner ;
+ ono | address |   phone    
+-----+---------+------------
+ 101 | pune    | 9918827488
+ 102 | mumbai  | 9984547488
+(2 rows)
+
+[B]
+fybca109=> insert into property values (201, 'royal', 'pune', 101);
+INSERT 0 1
+fybca109=> insert into property values (202, 'lotus', 'pimpri', 102);
+INSERT 0 1
+fybca109=> select * from property;
+ pno | description |  area  | ono 
+-----+-------------+--------+-----
+ 201 | royal       | pune   | 101
+ 202 | lotus       | pimpri | 102
+(2 rows)
+
+[C]
+fybca109=> update owner set phone = 9890278008 where ono=101;
+UPDATE 1
+fybca109=> select * from owner;
+ ono | address |   phone    
+-----+---------+------------
+ 102 | mumbai  | 9984547488
+ 101 | pune    | 9890278008
+(2 rows)
+
+[D]
+fybca109=> delete from property where area ='pune' and ono=101;
+DELETE 1
+fybca109=> select * from property;
+ pno | description |  area  | ono 
+-----+-------------+--------+-----
+ 202 | lotus       | pimpri | 102
+(1 row)
+
