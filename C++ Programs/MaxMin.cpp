@@ -7,11 +7,13 @@ using namespace std;
 
 class Second_number;
 
-class First_number {
+class First_number 
+{
     int num1;
 
     public:
-        void get_number() {
+        void get_number()
+        {
             cout << "Enter number: ";
             cin >> num1;
         }
@@ -19,11 +21,13 @@ class First_number {
     friend void max_min(First_number, Second_number);
 };
 
-class Second_number {
+class Second_number 
+{
     int num2;
 
     public:
-        void get_number() {
+        void get_number() 
+        {
             cout << "Enter number: ";
             cin >> num2;
         }
@@ -45,7 +49,8 @@ void max_min(First_number a, Second_number b) {
     }
 }
 
-int main() {
+int main() 
+{
     First_number a;
     Second_number b;
 
