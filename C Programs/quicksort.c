@@ -2,13 +2,14 @@
 void quicksort (int a[20], int lb, int ub)
 {
 	int j;
-if(lb < ub)
-{
+	if(lb < ub)
+	{
 	j=partition(a,lb,ub);
 	quicksort(a,lb,j-1);
 	quicksort(a,j+1,ub);
+	}
 }
-}
+
 int partition(int a[20], int lb, int ub)
 {
 	int up,dn,temp,pivot;
@@ -25,14 +26,16 @@ int partition(int a[20], int lb, int ub)
 	{
 		up--;
 	}
-if(dn < up)
-{
+		
+	if(dn < up)
+	{
 	temp=a[dn];
 	a[dn]=a[up];
 	a[up]=pivot;
-}
 	}
-while (dn < up);
+	}
+	
+	while (dn < up);
 
 	a[lb]=a[up];
 	a[up]=pivot;
