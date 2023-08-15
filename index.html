@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>! Task Management System !</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #tl {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 30px;
+    }
+
+    #tl h2 {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 300px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+    }
+
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    .high-priority {
+      background-color: #f8d7da;
+    }
+
+    .medium-priority {
+      background-color: #fff3cd;
+    }
+
+    .low-priority {
+      background-color: #d4edda;
+    }
+
+    .completed {
+      text-decoration: line-through;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>! Task Management System Website !</h1>
+
+  <div id="tl">
+    <h2>To-Do</h2>
+    <ul id="t"></ul>
+
+    <h2>In Progress</h2>
+    <ul id="i"></ul>
+
+    <h2>Completed</h2>
+    <ul id="c"></ul>
+  </div>
+
+  <h2>Add New Task</h2>
+  <form id="f">
+    <label for="ti"> Title : </label>
+    <input type="text" id="ti" required>
+
+    <label for="dl"> Deadline : </label>
+    <input type="date" id="dl" required>
+
+    <label for="p"> Priority : </label>
+    <select id="p" required>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+
+    <label for="lb"> Labels (comma-separated) : </label>
+    <input type="text" id="lb">
+
+    <button type="submit"><b> Add Task </b></button>
+  </form>
+
+<!--    @byShreyasVanage   -->
+    
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const t = document.getElementById("t");
+      const i = document.getElementById("i");
+      const c = document.getElementById("c");
+      const f = document.getElementById("f");
+      const tsk = [];
+
+      function crt(task) {
+        const li = document.createElement("li");
+        const s = document.createElement("span");
+        s.innerText = task.status + " - ";
+        li.innerText = task.title + " - " + task.deadline + " - " + task.labels.join(", ");
+        li.insertBefore(s, li.firstChild);
+
+        if (task.priority === "High") {
+          li.classList.add("high-priority");
+        } else if (task.priority === "Medium") {
+          li.classList.add("medium-priority");
+        } else {
+          li.classList.add("low-priority");
+        }
+
+        if (task.status === "Completed") {
+          li.classList.add("completed");
+        }
+
+        li.addEventListener("click", function () {
+          if (task.status === "To-Do") {
+            task.status = "In Progress";
+          } else if (task.status === "In Progress") {
+            task.status = "Completed";
+          } else {
+            task.status = "To-Do";
+          }
+
+          rndr();
+        });
+
+        return li;
+      }
+
+      function rndr() {
+        t.innerHTML = "";
+        i.innerHTML = "";
+        c.innerHTML = "";
+
+        tsk.forEach(function (task) {
+          const te = crt(task);
+
+          switch (task.status) {
+            case "To-Do":
+              t.appendChild(te);
+              break;
+            case "In Progress":
+              i.appendChild(te);
+              break;
+            case "Completed":
+              c.appendChild(te);
+              break;
+          }
+        });
+      }
+
+      f.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const tl = document.getElementById("ti").value;
+        const dl = document.getElementById("dl").value;
+        const pr = document.getElementById("p").value;
+        const lb = document.getElementById("lb").value.split(",").map(label => label.trim());
+        const nt = {
+          title: tl,
+          deadline: dl,
+          priority: pr,
+          labels: lb,
+          status: "To-Do",
+        };
+
+        tsk.push(nt);
+        rndr();
+
+        f.reset();
+      });
+
+      rndr();
+    });
+  </script>
+  
+</body>
+</html>
