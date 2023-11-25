@@ -1,0 +1,1584 @@
+SLIP 1]
+Q1]--->
+import java.util.*;
+public class Slip1Q1
+{
+	private int n;
+	public void multiplication(int n)
+	{
+		int i,ans;
+		for(i=1;i<=10;i++)
+		{
+			System.out.println(i+"*"+n+"="+(i*n));
+		}
+	}
+	public static void main(String a[])
+	{
+		Slip1Q1 o=new Slip1Q1();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a number:");
+		int n=sc.nextInt();
+		o.multiplication(n);
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip1Q2
+{
+	public static void main(String a[])
+	{
+		LinkedList<String> l1=new LinkedList<String>();
+		l1.add("Red");
+		l1.add("Blue");
+		l1.add("Yellow");
+		l1.add("Orange");
+		ListIterator i=l1.listIterator();
+		while(i.hasNext())
+		{
+			System.out.println(i.next());
+		}
+		while(i.hasPrevious())
+		{
+			System.out.println(i.previous());
+		}
+		LinkedList<String> l2=new LinkedList<String>();
+		l2.add("Pink");
+		l2.add("Green");
+		l1.addAll(2,l2);
+		ListIterator li=l1.listIterator();
+		while(li.hasNext())
+		{
+			System.out.println(li.next());
+		}
+	}
+}
+
+****************************************************************************************************************************
+SLIP 2]
+Q1]--->
+import java.util.*;
+public class Slip2Q1
+{
+	public static void main(String arg[])
+	{
+		ArrayList<Integer> a=new ArrayList<Integer>();
+		Scanner sc=new Scanner(System.in);
+		int n,no;
+		System.out.println("Enter how many number u want ?");
+		n=sc.nextInt();
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter a number: ");
+			no=sc.nextInt();
+			a.add(no);
+		}
+		Iterator i=a.iterator();
+		while(i.hasNext())
+		{
+			System.out.println(i.next());
+		}
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip2Q2
+{
+	private int num;
+	public Slip2Q2()
+	{
+		num=0;
+	}
+	public Slip2Q2(int n)
+	{
+		this.num=n;
+	}
+	public void isPositive()
+	{
+		if(num>0)
+			System.out.println(num+" is +ve");
+	}
+	public void isNegative()
+	{
+		if(num<0)
+			System.out.println(num+" is -ve");
+	}
+	public void isOdd()
+	{
+		if(num%2!=0)
+			System.out.println(num+" is odd");
+	}
+	public void isEven()
+	{
+		if(num%2==0)
+			System.out.println(num+" is even");
+	}
+	public static void main(String arg[])
+	{
+		int n;
+		if(arg.length==0)
+		{
+			System.out.println("Enter number during compile time.....");
+			System.exit(0);
+		}
+		n=Integer.parseInt(arg[0]);
+		
+		Slip2Q2 s=new Slip2Q2();
+		s.isPositive();
+		s.isNegative();
+		s.isOdd();
+		s.isEven();
+		
+		Slip2Q2 s2=new Slip2Q2(n);
+		s2.isPositive();
+		s2.isNegative();
+		s2.isOdd();
+		s2.isEven();
+		
+		Slip2Q2 s3=new Slip2Q2(10);
+		s3.isPositive();
+		s3.isNegative();
+		s3.isOdd();
+		s3.isEven();
+	}
+}
+
+**********************************************************************************************************************************
+SLIP 3]
+
+Q1]--->
+import java.util.*;
+public class Slip3Q1
+{
+	public static void main(String arg[])
+	{
+		int n,i,sum=0;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter how many number in array ?");
+		n=sc.nextInt();
+		int a[]=new int [n];
+		for(i=0;i<n;i++)
+		{
+			System.out.println("Enter number: ");
+			a[i]=sc.nextInt();
+			sum+=a[i];
+		}
+		System.out.println(".....Displaying Entered array.....");
+		for(i=0;i<n;i++)
+		{
+			System.out.println(a[i]);
+		}
+		System.out.println("\n\nSum of array elements is: "+sum);
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip3Q2
+{
+	private int ano;
+	private String aname;
+	private float bal;
+	public void accept()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter account number: ");
+		ano=sc.nextInt();
+		System.out.println("Enter account name: ");
+		aname=sc.next();
+		System.out.println("Enter account balance: ");
+		bal=sc.nextFloat();
+	}
+	public void display()
+	{
+		System.out.println("Account number: "+ano);
+		System.out.println("Account name: "+aname);
+		System.out.println("Account balance: "+bal);
+	}
+	public static void sortAccount(Slip3Q2 s[],int n)
+	{
+		Slip3Q2 temp;
+		int i,j;
+		for(i=0;i<n;i++)
+		{
+			for(j=i+1;j<n;j++)
+			{
+				if(s[i].bal<s[j].bal)
+				{
+					temp=s[i];
+					s[i]=s[j];
+					s[j]=temp;
+				}
+			}
+			s[i].display();
+		}
+		
+	}
+	public static void main(String arg[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a number :");
+		int n=sc.nextInt();
+		Slip3Q2 s[]=new Slip3Q1[n];
+		for(int i=0;i<n;i++)
+		{
+			s[i]=new Slip3Q2();
+			s[i].accept();
+		}
+		for(int i=0;i<n;i++)
+		{
+			s[i].display();
+		}
+		System.out.println("....Data in sorted manner....");
+		Slip3Q2.sortAccount(s,n);
+	}
+}
+
+*************************************************************************************************************************************
+SLIP 4]
+Q1--->
+import java.util.*;
+public class Slip4Q1
+{
+	public static void main(String arg[])
+	{
+		String name;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter your name: ");
+		name=sc.next();
+		name=name.toUpperCase();
+		System.out.println("Hello "+name+" nice to meet you!"); 
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip4Q2
+{
+	private int id;
+	private String name;
+	private float price;
+	public void accept()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Product id: ");
+		id=sc.nextInt();
+		System.out.println("Enter Product name: ");
+		name=sc.next();
+		System.out.println("Enter Product price: ");
+		price=sc.nextFloat();
+	}
+	public void display()
+	{
+		System.out.println("Product id: "+id);
+		System.out.println("Product name: "+name);
+		System.out.println("Product price: "+price);
+	}
+	public static void check(Slip4Q2 s[],int n)
+	{
+		Slip4Q2 temp;
+		int i,j;
+		for(i=0;i<n;i++)
+		{
+			for(j=i+1;j<n;j++)
+			{
+				if(s[i].price>s[j].price)
+				{
+					temp=s[i];
+					s[i]=s[j];
+					s[j]=temp;
+				}
+			}
+		}
+		s[0].display();
+	}
+	public static void main(String arg[])
+	{
+		int n,i;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter how many products u want ?");
+		n=sc.nextInt();
+		Slip4Q2 s[]=new Slip4Q2[n];
+		for(i=0;i<n;i++)
+		{
+			s[i]=new Slip4Q2();
+			s[i].accept();
+		}
+		for(i=0;i<n;i++)
+		{
+			s[i].display();
+		}
+		System.out.println("\n.....Product having minimum price.....");
+		Slip4Q2.check(s,n);
+	}
+}
+
+*************************************************************************************************************************************
+SLIP 5]
+Q1--->
+import java.util.*;
+class InvalidNumber extends Exception
+{
+	InvalidNumber(String  msg)
+	{
+		System.out.println(msg);
+	}
+}
+public class Slip5Q1
+{
+	public static void main(String arg[]) throws InvalidNumber
+	{
+		int n,fact=1,i;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a number: ");
+		n=sc.nextInt();
+		try
+		{
+			if(n==0){
+			throw new InvalidNumber("The number is zero....please enter non-zero number");}
+			else
+			{
+				for(i=1;i<=n;i++)
+				{
+					fact=fact*i;
+				}
+				System.out.println("Factorial of "+n+" is: "+fact);
+			}	
+		}
+		catch(InvalidNumber e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip5Q2 //(Point)
+{
+	protected int x,y;
+	public Slip5Q2()
+	{
+		x=0;
+		y=0;
+	}
+	public Slip5Q2(int x,int y)
+	{
+		this.x=x;
+		this.y=y;
+	}
+	public static void main(String arg[])
+	{
+		SubClass sc1=new SubClass();
+		sc1.display();
+		
+		SubClass sc2=new SubClass(1,4,"Yellow");
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter x co-ordinate: ");
+		int x=sc.nextInt();
+		System.out.println("Enter y co-ordinate: ");
+		int y=sc.nextInt();
+		System.out.println("Enter color name: ");
+		string s=sc.next();
+		SubClass sc3=new SubClass(x,y,s);
+		sc3.display();
+	}
+}
+class SubClass extends Slip5Q2
+{
+	private String color;
+	public SubClass()
+	{
+		super();
+		color="Blue";
+	}
+	public SubClass(int x,int y,String s)
+	{
+		super(x,y);
+		this.color=s;
+	}
+	public void display()
+	{
+		System.out.println("Co-ordinates are: ("+x+","+y+")");
+		System.out.println("Color is : "+color);
+	}
+}
+
+**************************************************************************************************************************************
+SLIP 6]
+Q1]--->
+import java.util.*;
+public class Slip6Q1
+{
+	public static void main(String arg[])
+	{
+		TreeSet<Integer> ts=new TreeSet<Integer>();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter how many elements u want in collection ?");
+		int n=sc.nextInt();
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter number: ");
+			int e=sc.nextInt();
+			ts.add(e);
+		}
+		Iterator ti=ts.iterator();
+		System.out.println("....Elements in sorted manner....");
+		while(ti.hasNext())
+		{
+			System.out.println(ti.next());
+		}
+		System.out.println("Enter element to be serach : ");
+		int num = sc.nextInt();
+		if(ts.contains(num))
+			System.out.println(num+" found");
+        else
+			System.out.println(num+" not found");
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip6Q2
+{
+	private int id;
+	private String name;
+	private float sal;
+	public void accept()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter employee id: ");
+		id=sc.nextInt();
+		System.out.println("Enter employee name: ");
+		name=sc.next();
+		System.out.println("Enter employee salary: ");
+		sal=sc.nextFloat();
+	}
+	public void display()
+	{
+		System.out.println("Employee id: "+id);
+		System.out.println("Employee name: "+name);
+		System.out.println("Employee salary: "+sal);
+	}
+	public static void sortSal(Slip6Q2 s[],int n)
+	{
+		Slip6Q2 temp;
+		int i,j;
+		for(i=0;i<n;i++)
+		{
+			for(j=i+1;j<n;j++)
+			{
+				if(s[i].sal<s[j].sal)
+				{
+					temp=s[i];
+					s[i]=s[j];
+					s[j]=temp;
+				}
+			}
+		}
+		s[0].display();
+	}
+	public static void main(String arg[])
+	{
+		int n,i;
+		System.out.println("Enter how many employees u want ?");
+		Scanner sc=new Scanner(System.in);
+		n=sc.nextInt();
+		Slip6Q2 s[]=new Slip6Q2[n];
+		for(i=0;i<n;i++)
+		{
+			s[i]=new Slip6Q2();
+			s[i].accept();
+		}
+		for(i=0;i<n;i++)
+		{
+			s[i].display();
+		}
+		System.out.println("\n\n.....Employee having maximum salary.....\n");
+		Slip6Q2.sortSal(s,n);
+	}
+}
+
+*****************************************************************************************************************************************
+SLIP 7]
+Q1]--->
+import java.util.*;
+public class Slip7Q1
+{
+	public static void main(String arg[])
+	{
+		String name;
+		float sal;
+		Hashtable ht=new Hashtable();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter how many employees detail u want ?");
+		int n=sc.nextInt();
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter employee name: ");
+			name=sc.next();
+			System.out.println("Enter employee salary: ");
+			sal=sc.nextFloat();
+			ht.put(name,sal);
+		}
+		Enumeration k=ht.keys();
+		Enumeration v=ht.elements();
+		System.out.println("Name \t Salary");
+		while(k.hasMoreElements())
+		{
+			System.out.println(k.nextElement()+"\t"+v.nextElement());
+		}
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip7Q2
+{
+	private int rollno;
+	private String name;
+	private float per;
+	public Slip7Q2()
+	{
+		this.rollno=0;
+		this.name="Invalid name";
+		this.per=0;
+	}
+	public Slip7Q2(int rn,String n,float p)
+	{
+		this.rollno=rn;
+		this.name=n;
+		this.per=p;
+	}
+	void display()
+	{
+			System.out.println("Student roll number: "+this.rollno);
+			System.out.println("Student name: "+this.name);
+			System.out.println("Student percentage: "+this.per);
+	}
+	public static void main(String arg[])
+	{
+		Slip7Q2 sd=new Slip7Q2();
+		sd.display();
+		Slip7Q2 s[]=new Slip7Q2[5];
+		Scanner sc=new Scanner(System.in);
+		int rn,i;
+		String n;
+		float p;
+		for(i=0;i<5;i++)
+		{
+			System.out.println("Enter student roll number: ");
+			rn=sc.nextInt();
+			System.out.println("Enter student name: ");
+			n=sc.next();
+			System.out.println("Enter student percentage: ");
+			p=sc.nextFloat();
+			s[i]=new Slip7Q2(rn,n,p);
+		}
+		for(i=0;i<5;i++)
+		{
+			s[i].display();
+		}
+	}
+}
+
+*************************************************************************************************************************************'
+SLIP 8]
+
+Q1]--->
+public class Slip8Q1
+{
+	public static void main(String arg[])
+	{
+		if(arg.length==0)
+			System.out.println("Enter number during compile time....");
+		int n=Integer.parseInt(arg[0]);
+		int num=n,rev=0;
+		while(n>0)
+		{
+			rev = rev * 10;
+			rev = rev + n%10;
+			n = n/10;
+		}
+		System.out.println("Reverse of "+num+" is : "+rev);
+	}
+}
+
+Q2]--->
+import java.util.*;
+
+class InvalidDateException extends Exception
+{
+	public InvalidDateException(String msg)
+	{
+		super (msg);
+	}
+}
+ class MyDate
+{
+	private int dd,mm,yy;
+	
+	Scanner sc=new Scanner(System.in);
+	
+	public void accept()
+	{
+		System.out.print("Enter Date:");
+		dd=sc.nextInt();
+		
+		System.out.print("Enter Month:");
+		mm=sc.nextInt();
+		
+		System.out.print("Enter Year:");
+		yy=sc.nextInt();
+	}
+	
+	public String toString()
+	{
+		return dd+"-"+mm+"-"+yy;
+	}
+	
+	public void check() throws InvalidDateException
+	{
+		if(mm < 1 || mm >12)
+			throw new InvalidDateException("Invalid Month");
+		
+		if(yy%4==0 && (yy%100!=0 || yy%400==0))
+		{
+			int arr[]={0,31,29,31,30,31,30,31,31,30,31,30,31};
+			if((dd>arr[mm]) || dd<1)
+					throw new InvalidDateException("Invalid Date");
+		}
+		else 
+		{
+			int arr[]={0,31,28,31,30,31,30,31,31,30,31,30,31};	
+			if((dd > arr[mm]) || (dd<1))	
+				throw new InvalidDateException("Invalid Date");
+		}	
+	}
+	
+	public static void main(String args[])
+	{
+		Setc2 s=new Setc2();
+		s.accept();
+		
+		try
+		{
+			s.check();
+			System.out.println("------------------------\n"+s + " is valid Date \n-----------------------");
+		}
+		catch(InvalidDateException e)
+		{
+					System.out.println(e);
+		}
+	}
+}
+
+***********************************************************************************************************************************
+SLIP 9]
+Q1]--->
+import java.io.*;
+public class Slip9Q1
+{
+	public static void main(String arg[]) throws IOException
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter a number: ");
+		int n=Integer.parseInt(br.readLine());
+		int i=1,sum=0;
+		while(i<=n/2)
+		{
+			if(n%i==0)
+			{
+				sum=sum+i;
+			}
+			i++;
+		}
+		if(n==sum)
+			System.out.println(n+" is Perfect number");
+		else
+			System.out.println(n+" is not Perfect number");
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip9Q2 //(Point)
+{
+	protected int x,y;
+	public Slip9Q2()
+	{
+		x=0;
+		y=0;
+	}
+	public Slip9Q2(int x,int y)
+	{
+		this.x=x;
+		this.y=y;
+	}
+	public static void main(String arg[])
+	{
+		Point3D sc1=new Point3D();
+		sc1.display();
+		
+		Point3D sc2=new Point3D(1,4,6);
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter x co-ordinate: ");
+		int x=sc.nextInt();
+		System.out.println("Enter y co-ordinate: ");
+		int y=sc.nextInt();
+		System.out.println("Enter z co-ordinate: ");
+		int z=sc.nextInt();
+		Point3D sc3=new Point3D(x,y,z);
+		sc3.display();
+	}
+}
+class Point3D extends Slip9Q2
+{
+	private int z;
+	public Point3D()
+	{
+		super();
+		z=0;
+	}
+	public Point3D(int x,int y,int z)
+	{
+		super(x,y);
+		this.z=z;
+	}
+	public void display()
+	{
+		System.out.println("Co-ordinates are: ("+x+","+y+","+z+")");
+	}
+}
+
+****************************************************************************************************************************************
+SLIP 10]
+Q1--->
+import java.util.*;
+public class Slip10Q1
+{
+	public static void main(String arg[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a number:");
+		int n=sc.nextInt();
+		int num=n,i,flag=0;
+		if((n==0) || (n==1))
+			System.out.println(num+" is not prime number....");
+		else
+		{
+			for(i=2;i<=n/2;i++)
+			{
+				if(n%i==0)
+				{
+					flag=1;
+					break;
+				}
+			}
+			if(flag==1)
+				System.out.println(num+" is not prime number....");
+			else
+				System.out.println(num+" is prime number....");
+		}
+		
+	}
+}
+
+Q2--->
+	//......(CapitalString.java).......
+
+package utility;
+public class CapitalString
+{
+	public String capital(String s)
+	{
+		if (s==null || s.isEmpty()) 
+		{
+			return s; 		// Handle empty or null input gracefully.
+		}
+		char first_char = Character.toUpperCase(s.charAt(0)); // Capitalize the first letter.
+		return first_char + s.substring(1); // Combine the first letter and the rest of the string.
+	}
+}
+	
+	//(........Slip10Q2.java........)
+
+import java.util.*;
+import utility.CapitalString;
+public class Slip10Q2 //Person
+{
+	private String name,city;
+	public void accept()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter name:");
+		name=sc.next();
+		System.out.println("Enter city:");
+		city=sc.next();
+	}
+	public void display()
+	{
+		CapitalString cs=new CapitalString();
+		String s=cs.capital(name);
+		System.out.println(s+" lives in "+city);
+	}
+	public static void main(String arg[])
+	{
+		Slip10Q2 s=new Slip10Q2();
+		s.accept();
+		s.display();
+	}
+}
+
+for compilation:---
+javac -d . CapitalString.java
+javac Slip10Q2.java
+java Slip10Q2
+
+*******************************************************************************************************************************
+SLIP 11]
+Q1]--->
+import java.util.*;
+public class Slip11Q1 //(MyDate)
+{
+	private int dd,mm,yy;
+	public Slip11Q1(int d,int m,int y)
+	{
+		this.dd=d;
+		this.mm=m;
+		this.yy=y;
+	}
+	public void display()
+	{
+		if((dd>0) && (dd<32) && (mm>0) && (mm<13))
+		{
+				System.out.println(dd+"-"+mm+"-"+yy);
+		}
+		else 
+			System.out.println("Invalid date");
+	}
+	public static void main(String arg[])
+	{
+		int d,m,y;
+		Slip11Q1 s1=new Slip11Q1(20,9,2020);
+		s1.display();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter day: ");
+		d=sc.nextInt();
+		System.out.println("Enter month: ");
+		m=sc.nextInt();
+		System.out.println("Enter year: ");
+		y=sc.nextInt();
+		Slip11Q1 s2=new Slip11Q1(d,m,y);
+		s2.display();
+	}
+}
+
+Q2]--->
+import java.util.*;
+abstract class Shape
+{
+	public abstract void area();
+	public abstract void volume();
+	protected float pi=3.14f;
+}
+class Sphere extends Shape
+{
+	private float r;
+	public Sphere(float r)
+	{
+		this.r=r;
+	}
+	public void area()
+	{
+		System.out.println("Area of sphere is: "+(4*pi*r*r));
+	}
+	public void volume()
+	{
+		System.out.println("Volume of sphere is: "+(1.333f*pi*r*r*r));
+	}
+}
+public class Slip11Q2
+{
+	public static void main(String arg[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a radius: ");
+		float r=sc.nextInt();
+		Sphere s=new Sphere(r);
+		s.area();
+		s.volume();
+	}
+}
+
+**********************************************************************************************************************************
+SLIP12]
+Q1]--->
+  (Square.java)
+package Series;
+public class Square
+{
+	public void sq(int n)
+	{
+		for(int i=1;i<=n;i++)
+		{
+			System.out.println(i+"*"+i+"="+i*i);
+		}
+	}
+}
+
+(Slip12Q1.java)
+import java.util.*;
+import Series.Square;
+public class Slip12Q1
+{
+	public static void main(String arg[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter number: ");
+		int n=sc.nextInt();
+		Square s=new Square();
+		s.sq(n);
+	}
+}
+
+For compilation:-	javac -d . Square.java  
+javac Slip12Q1.java
+java Slip12Q1
+
+Q2]--->
+import java.util.*;
+abstract class Shape
+{
+	public abstract void area();
+	public abstract void volume();
+	protected float pi=3.14f;
+}
+class Cylinder extends Shape
+{
+	private float radius,height;
+	public Cylinder(float r,float h)
+	{
+		this.radius=r;
+		this.height=h;
+	}
+	public void area()
+	{
+		System.out.println("Area of sphere is: "+((2*pi*radius*height)+(2*pi*radius*radius))); //2π r h + 2π r²
+	}
+	public void volume()
+	{
+		System.out.println("Volume of sphere is: "+(pi*radius*radius*height)); //π r² h
+	}
+}
+public class Slip12Q2
+{
+	public static void main(String arg[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a radius: ");
+		float r=sc.nextFloat();
+		System.out.println("Enter a height: ");
+		float h=sc.nextFloat();
+		Cylinder s=new Cylinder(r,h);
+		s.area();
+		s.volume();
+	}
+}
+
+**********************************************************************************************************************************
+SLIP 13]
+Q1]--->
+import java.util.*;
+public class Slip13Q1
+{
+	public static void main(String arg[])
+	{
+		LinkedList<String> l=new LinkedList<String>();
+		l.add("Apple");
+		l.add("Banana");
+		l.add("Guava");
+		l.add("Orange");
+		ListIterator li=l.listIterator();
+		while(li.hasNext())
+		{
+			System.out.println(li.next());
+		}
+	}
+}
+
+Q2]--->
+import java.util.*;
+interface Operation
+{
+	public void area();
+	public void volume();
+	public float pi=3.14f;
+}
+public class Slip13Q2 implements Operation		//(Circle)
+{
+	private float radius;
+	public Slip13Q2(float r)
+	{
+		this.radius=r;
+	}
+	public void area()
+	{
+		System.out.println("Area of circle is: "+(pi*radius*radius));
+	}
+	public void volume()
+	{
+		System.out.println("No volume exists for circle....");
+	}
+	public static void main(String arg[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter radius: ");
+		float r=sc.nextFloat();
+		Slip13Q2 s=new Slip13Q2(r);
+		s.area();
+		s.volume();
+	}
+}
+
+****************************************************************************************************************************************
+SLIP 14]
+Q1]--->
+import java.io.IOException;
+import java.sql.*;
+
+public class Final
+{
+	public static void main(String args[]) throws IOException,ClassNotFoundException
+	{
+		Connection c;
+		try
+		{
+			Class.forName("org.postgresql.Driver");
+			c=DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","3224");
+			
+			if(c==null)
+				System.out.println("Connection failedd");
+			else
+				System.out.println("Connection Successfull");
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+
+Q2]--->
+import java.util.*;
+interface Operation
+{
+	public void area();
+	public void volume();
+	public float pi=3.14f;
+}
+public class Slip14Q2 implements Operation
+{
+	private float radius,height;
+	public Slip14Q2(float r,float h)
+	{
+		this.radius=r;
+		this.height=h;
+	}
+	public void area()
+	{
+		System.out.println("Area of Cylinder is: "+((2*pi*radius*height)+(2*pi*radius*radius))); 	//2π r h + 2π r²
+	}
+	public void volume()
+	{
+		System.out.println("Volume of Cylinder is: "+(pi*radius*radius*height)); 	//π r² h
+	}
+	public static void main(String arg[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter radius: ");
+		float r=sc.nextFloat();
+		System.out.println("Enter height ");
+		float h=sc.nextFloat();
+		Slip14Q2 s=new Slip14Q2(r,h);
+		s.area();
+		s.volume();
+	}
+}
+
+****************************************************************************************************************************************
+SLIP 15]
+Q1]--->
+import java.util.*;
+public class Slip15Q1
+{
+	public static void main(String a[])
+	{
+		LinkedList<String> l=new LinkedList<String>();
+		l.add("Apple");
+		l.add("Banana");
+		l.add("Guava");
+		l.add("Orange");
+		ListIterator li=l.listIterator();
+		while(li.hasNext())
+		{
+			System.out.println(li.next());
+		}
+	}
+}
+
+Q2]--->
+import java.util.*;
+class Employee
+{
+	protected String name;
+	protected float sal;
+	public void accept()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter name: ");
+		name=sc.next();
+		System.out.println("Enter salary: ");
+		sal=sc.nextFloat();
+	}
+	public void display()
+	{
+		System.out.println("Name: "+name);
+		System.out.println("Salary: "+sal);
+	}
+}
+public class Slip15Q2 extends Employee
+{
+	protected String pname;
+	public void accept()
+	{
+		super.accept();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter project name: ");
+		pname=sc.next();
+	}
+	public void display()
+	{
+		super.display();
+		System.out.println("Project name: "+pname);
+	}
+	public static void main(String arg[])
+	{
+		Slip15Q2 s=new Slip15Q2();
+		s.accept();
+		s.display();
+	}
+}
+
+**************************************************************************************************************************************
+SLIP16]
+Q1--->
+import java.util.*;
+public class Slip16Q1
+{
+	private int num;
+	public Slip16Q1(int n)
+	{
+		this.num=n;
+	}
+	public void isEven()
+	{
+		if(num%2==0)
+			System.out.println(num+" is even");
+		else 
+			System.out.println(num+" is odd");
+	}
+	public static void main(String arg[])
+	{
+		if(arg.length==0)
+			System.out.println("plzz enter a number from command line...");
+		int n=Integer.parseInt(arg[0]);
+		Slip16Q1 s=new Slip16Q1(n);
+		s.isEven();
+	}
+}
+
+Q2]--->
+import java.util.*;
+class Employee
+{
+	private String name;
+	private float sal;
+	public void accept()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter employee name: ");
+		name=sc.next();
+		System.out.println("Enter employee salary: ");
+		sal=sc.nextFloat();
+	}
+	public void display()
+	{
+		System.out.println("Employee name: "+name);
+		System.out.println("Employee salary: "+sal);
+	}
+}
+class Programmer extends Employee
+{
+	private String plang;
+	public void accept()
+	{
+		super.accept();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter programming language: ");
+		plang=sc.next();
+	}
+	public void display()
+	{
+		super.display();
+		System.out.println("Programming language: "+plang);
+	}
+}
+public class Slip16Q2
+{
+	public static void main(String arg[])
+	{
+		Programmer p=new Programmer();
+		p.accept();
+		p.display();
+	}
+}
+
+*****************************************************************************************************************************************
+SLIP17]
+Q1--->
+import java.util.*;
+public class Slip17Q1
+{
+	private int num;
+	public Slip17Q1(int n)
+	{
+		this.num=n;
+	}
+	public void isOdd()
+	{
+		if(num%2!=0)
+			System.out.println(num+" is odd");
+		else
+			System.out.println(num+" is even");
+	}
+	public static void main(String a[])
+	{
+		if(a.length==0)
+			System.out.println("Enter a number during compilation....");
+		int n=Integer.parseInt(a[0]);
+		Slip17Q1 s=new Slip17Q1(n);
+		s.isOdd();
+	}
+}
+
+Q2--->
+import java.util.*;
+class Student
+{
+	private int rno;
+	private String name;
+	public static int cnt;
+	public Student()
+	{
+		this.rno=0;
+		this.name="No name";
+	}
+	public Student(int r,String n)
+	{
+		this.rno=r;
+		this.name=n;
+	}
+	public void display()
+	{
+		System.out.println("Roll no: "+rno);
+		System.out.println("Name: "+name);
+		cnt++;
+	}
+}
+public class Slip17Q2
+{
+	public static void main(String a[])
+	{
+		Student s=new Student();
+		s.display();
+		Student s1=new Student(10,"Radhika");
+		s1.display();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter how many objects u want? ");
+		int n=sc.nextInt();
+		Student o[]=new Student[n];
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter roll number: ");
+			int r=sc.nextInt();
+			System.out.println("Enter name: ");
+			String na=sc.next();
+			o[i]=new Student(r,na);
+		}
+		for(int i=0;i<n;i++)
+		{
+			o[i].display();
+		}
+		System.out.println("\n\nTotal object count: "+Student.cnt);
+	}
+}
+
+*****************************************************************************************************************************************
+SLIP18]
+Q1]--->
+import java.util.*;
+public class Slip18Q1
+{
+	public void fact(int n)
+	{
+		for(int i=1;i<=n;i++)
+		{
+			if(n%i==0)
+				System.out.println(i);
+		}
+	}
+	public static void main(String arg[])
+	{
+		int n,f;
+		if(arg.length==0)
+			System.out.println("Enter a number dunring compilation......");
+		n=Integer.parseInt(arg[0]);
+		System.out.println("....Factors are as follows....");
+		Slip18Q1 s=new Slip18Q1();
+		s.fact(n);
+	}
+}
+
+Q2]--->
+import java.io.*;
+import java.util.*;
+
+public class javas18q2 {
+    public static void main(String args[]) throws FileNotFoundException, IOException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter How many strings:");
+        int n = sc.nextInt();
+
+        DataOutputStream dos = new DataOutputStream(new FileOutputStream("item.txt"));
+
+        for (int i = 1; i <= n; i++) {
+            System.out.println("Name in lowercase:");
+            String name = sc.next();
+
+            System.out.println("Address in lowercase:");
+            String addr = sc.next();
+
+            dos.writeUTF(name);
+            dos.writeUTF(addr);
+        }
+        dos.close();
+
+        DataInputStream dis = new DataInputStream(new FileInputStream("item.txt"));
+
+        for (int i = 1; i <= n; i++) {
+            // Read data from the file
+            String name = dis.readUTF();
+            String addr = dis.readUTF();
+
+            // Convert to uppercase
+            name = name.toUpperCase();
+            addr = addr.toUpperCase();
+
+            System.out.println("Name:" + name + " Address:" + addr);
+        }
+
+        dis.close();
+    }
+}
+
+******************************************************************************************************************************************
+SLIP19]
+Q1]--->
+import java.util.*;
+public class Slip19Q1
+{
+	public static void main(String arg[])
+	{
+		int temp,i,j,n;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter how many elements u want in array ?");
+		n=sc.nextInt();
+		int a[]=new int[n];
+		for(i=0;i<n;i++)
+		{
+			System.out.println("Enter no:");
+			a[i]=sc.nextInt();
+		}
+		
+		for(i=0;i<n;i++)
+		{
+			for(j=i+1;j<n;j++)
+			{
+				if(a[i]<a[j])
+				{
+					temp=a[i];
+					a[i]=a[j];
+					a[j]=temp;
+				}
+			}
+		}
+		System.out.println("Maximum number from an array: "+a[0]);
+	}
+}
+
+Q2]--->
+import java.util.*;
+abstract class Order
+{
+	private int id;
+	private String desc;
+	public void accept()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter order id: ");
+		id=sc.nextInt();
+		System.out.println("Enter order desription: ");
+		desc=sc.next();
+	}
+	public void display()
+	{
+		System.out.println("ID:"+id);
+		System.out.println("Description: "+desc);
+	}
+}
+class PurchaseOrder extends Order
+{
+	private String name;
+	public void accept()
+	{
+		super.accept();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter customer name: ");
+		name=sc.next();
+	}
+	public void display()
+	{
+		super.display();
+		System.out.println("Name: "+name);
+	}
+}
+public class Slip19Q2 
+{
+	public static void main(String a[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter how many order details u want ?");
+		int n=sc.nextInt();
+		PurchaseOrder po[]=new PurchaseOrder[n];
+		for(int i=0;i<n;i++)
+		{
+			po[i]=new PurchaseOrder();
+			po[i].accept();
+		}
+		System.out.println("\n\n");
+		for(int i=0;i<n;i++)
+		{
+			po[i].display();
+		}
+	}
+}
+
+******************************************************************************************************************************************
+SLIP20]
+Q1--->
+public class Slip20Q1
+{
+	public static void main(String arg[])
+	{
+		if(arg.length<=3)
+		{
+			System.out.println("plzzz enter a number during compilation.....");
+			System.exit(0);
+		}
+		int a[]= new int[arg.length];
+		for(int i=0;i<a.length;i++)
+		{
+			a[i]=Integer.parseInt(arg[i]);
+		}
+		int temp;
+		for(int i=0;i<arg.length;i++)
+		{
+			for(int j=i+1;j<arg.length;j++)
+			{
+				if(a[i]<a[j])
+				{
+					temp=a[i];
+					a[i]=a[j];
+					a[j]=temp;
+				}
+			}
+		}
+		System.out.println("Numbers in sorted manner: ");
+		for(int i=0;i<a.length;i++)
+		{
+			System.out.println(a[i]);
+		}	
+	}
+}
+
+Q2]--->
+import java.util.*;
+public class Slip20Q2		//Employee
+{
+	private int id;
+	private String name,dname;
+	private float sal;
+	public static int cnt;
+	public Slip20Q2()
+	{
+		this.id=0;
+		this.name="No name";
+		this.dname="No department";
+		this.sal=0f;
+	}
+	public Slip20Q2(int i,String n,String dn,float s)
+	{
+		this.id=i;
+		this.name=n;
+		this.dname=dn;
+		this.sal=s;
+	}
+	public void display()
+	{
+		System.out.println("Id:"+id+"\nName: "+name+"\nDepartment name: "+dname+"\nSalary: "+sal);
+		cnt++;
+	}
+	public static void main(String arg[])
+	{
+		Slip20Q2 s1=new Slip20Q2();
+		s1.display();
+		Slip20Q2 s2=new Slip20Q2(2,"Amar","Science",30000);
+		s2.display();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("\n\nEnter how many Employees details u wnat ?");
+		int n=sc.nextInt();
+		Slip20Q2 s3[]=new Slip20Q2[n];
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter id: ");
+			int id=sc.nextInt();
+			System.out.println("Enter name: ");
+			String name=sc.next();
+			System.out.println("Enter department name: ");
+			String dn=sc.next();
+			System.out.println("Enter salary: ");
+			float s=sc.nextFloat();
+			s3[i]=new Slip20Q2(id,name,dn,s);
+		}
+		System.out.println("\n\n");
+		for(int i=0;i<n;i++)
+		{
+			s3[i].display();
+		}
+		System.out.println("\n\nTotal object count is: "+Slip20Q2.cnt);
+	}
+}
