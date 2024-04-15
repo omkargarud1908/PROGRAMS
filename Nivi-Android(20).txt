@@ -1,0 +1,1337 @@
+PROGRAMMING IN ANDROID 
+( SLIPS SOLUTIONS )
+
+-------------------------------------------------------------------
+
+SLIP NO - 1
+Q2. Create an Android application to demonstrate Progress Bar. [20 Marks]
+
+XML 
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idRLContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv"
+        android:layout_margin="20dp"
+        android:text="Progress Bar in Android"
+        android:textAlignment="center"
+        android:layout_above="@+id/pb"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:id="@+id/pb"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_above="@+id/btn"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn"
+        android:text="Show Progess Bar"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:textAllCaps="false"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
+
+JAVA 
+package com.example.slip1q2;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    Button btn;
+    ProgressBar pb;
+    boolean isProgressVisible = false;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        btn = findViewById(R.id.btn);
+        pb = findViewById(R.id.pb);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isProgressVisible) {
+                    btn.setText("Show Progress Bar");
+                    pb.setVisibility(View.GONE);
+
+                    isProgressVisible = false;
+                } else {
+                    isProgressVisible = true;
+                    btn.setText("Hide Progress Bar");
+                    pb.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+}
+
+-------------------------------------------------------------------
+
+SLIP NO - 2,13
+
+Q2. Create First Activity to accept information like Teacher having First Name, Middle Name, Last 
+Name, Date of birth, Address, Mobile No. Specialization and display all information on Second Activity 
+when user click on Submit button. [20 Marks] 
+
+XML (activity_main.xml)
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/first"
+        android:hint="@string/enter_first_name"
+        android:layout_marginTop="80dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:autofillHints="name"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/middle"
+        android:hint="@string/enter_middle_name"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:autofillHints="name"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/last"
+        android:hint="@string/enter_last_name"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:autofillHints="name"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dob"
+        android:hint="@string/enter_date_of_birth"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:autofillHints="name"
+        android:inputType="date" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/address"
+        android:hint="@string/enter_address"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:autofillHints="name"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pno"
+        android:hint="@string/enter_phone_no"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:autofillHints="name"
+        android:inputType="phone" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sl"
+        android:hint="@string/enter_specialization"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:autofillHints="name"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="100dp"
+        android:text="@string/submit"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/btn" />
+
+</LinearLayout>
+
+XML (activity_new.xml)
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".New"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/teachers_information"
+        android:layout_gravity="center"
+        android:textSize="38sp"
+        android:id="@+id/tv"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv1"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv2"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv3"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv4"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv5"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv6"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv7"
+        android:textStyle="bold" />
+
+</LinearLayout>
+
+JAVA (MainActivity.java)
+package com.example.slip2q1;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    Button btn;
+    EditText first, middle, last, address, pno, dob, sl;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btn = findViewById(R.id.btn);
+        first = findViewById(R.id.first);
+        middle = findViewById(R.id.middle);
+        last = findViewById(R.id.last);
+        dob = findViewById(R.id.dob);
+        address = findViewById(R.id.address);
+        pno = findViewById(R.id.pno);
+        sl = findViewById(R.id.sl);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               String fname = first.getText().toString();
+               String mname = middle.getText().toString();
+               String lname = last.getText().toString();
+               String birth = dob.getText().toString();
+               String addr = address.getText().toString();
+               String phone = pno.getText().toString();
+               String special = sl.getText().toString();
+
+                Intent i = new Intent(getApplicationContext(), New.class);
+                i.putExtra("fnm",fname);
+                i.putExtra("mn",mname);
+                i.putExtra("lnm",lname);
+                i.putExtra("ad",addr);
+                i.putExtra("bth",birth);
+                i.putExtra("pn",phone);
+                i.putExtra("spl",special);
+
+                startActivity(i);
+            }
+        });
+
+    }
+}
+
+JAVA (NewActivity.java)
+package com.example.slip2q1;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class New extends AppCompatActivity {
+
+    TextView tv, tv1, tv2, tv3, tv4, tv5, tv6, tv7;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new);
+        tv = findViewById(R.id.tv);
+        tv1 = findViewById(R.id.tv1);
+        tv2 = findViewById(R.id.tv2);
+        tv3 = findViewById(R.id.tv3);
+        tv4 = findViewById(R.id.tv4);
+        tv5 = findViewById(R.id.tv5);
+        tv6 = findViewById(R.id.tv6);
+        tv7 = findViewById(R.id.tv7);
+
+        String fname = getIntent().getStringExtra("fnm");
+        String mname = getIntent().getStringExtra("mn");
+        String lname = getIntent().getStringExtra("lnm");
+        String addr = getIntent().getStringExtra("ad");
+        String birth = getIntent().getStringExtra("bth");
+        String phone = getIntent().getStringExtra("pn");
+        String special = getIntent().getStringExtra("spl");
+
+        tv1.setText(fname);
+        tv2.setText(mname);
+        tv3.setText(lname);
+        tv4.setText(addr);
+        tv5.setText(birth);
+        tv6.setText(phone);
+        tv7.setText(special);
+
+    }
+}
+
+-------------------------------------------------------------------
+
+SLIP NO - 3,11
+
+Q2. Create an Android App, it reads the Students Details (Name, Surname, Class, Gender,
+Hobbies, Marks) and display the all information in another activity on click of Submit button.
+ [20 Marks]
+ 
+XML (activity_main.xml)
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="Enter your Name: "
+        android:textStyle="bold"
+        android:id="@+id/e1"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Enter your Surname: "
+        android:textStyle="bold"
+        android:id="@+id/e2"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Enter your Class: "
+        android:textStyle="bold"
+        android:id="@+id/e3"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Enter your Gender: "
+        android:textStyle="bold"
+        android:id="@+id/e4"
+        android:textSize="20sp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Enter your Hobbies: "
+        android:textStyle="bold"
+        android:id="@+id/e5"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Enter your Marks: "
+        android:textStyle="bold"
+        android:id="@+id/e6"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="120dp"
+        android:text="Submit"
+        android:id="@+id/b1"
+        android:textSize="20sp" />
+
+
+</LinearLayout>
+
+XML (activity_new.xml)
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".New"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/tv1" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/tv2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/tv3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/tv4" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/tv5" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/tv6" />
+
+</LinearLayout>
+
+JAVA (MainActivity.java)
+package com.example.studentsdetails;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    EditText e1,e2,e3,e4,e5,e6;
+    Button b1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        e1 = findViewById(R.id.e1);
+        e2 = findViewById(R.id.e2);
+        e3 = findViewById(R.id.e3);
+        e4 = findViewById(R.id.e4);
+        e5 = findViewById(R.id.e5);
+        e6 = findViewById(R.id.e6);
+        b1 = findViewById(R.id.b1);
+        b1 = findViewById(R.id.b1);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nm = e1.getText().toString();
+                String sn = e2.getText().toString();
+                String cl = e3.getText().toString();
+                String gn = e4.getText().toString();
+                String hb = e5.getText().toString();
+                String mk = e6.getText().toString();
+
+                Intent i = new Intent(getApplicationContext(),New.class);
+                i.putExtra("name",nm);
+                i.putExtra("surname",sn);
+                i.putExtra("class",cl);
+                i.putExtra("gender",gn);
+                i.putExtra("hobbies",hb);
+                i.putExtra("marks",mk);
+
+                startActivity(i);
+            }
+        });
+    }
+
+}
+
+JAVA (NewActivity.java)
+package com.example.studentsdetails;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class New extends AppCompatActivity {
+
+    TextView tv1,tv2,tv3,tv4,tv5,tv6;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new);
+        tv1 = findViewById(R.id.tv1);
+        tv2 = findViewById(R.id.tv2);
+        tv3 = findViewById(R.id.tv3);
+        tv4 = findViewById(R.id.tv4);
+        tv5 = findViewById(R.id.tv5);
+        tv6 = findViewById(R.id.tv6);
+
+        String nm = getIntent().getStringExtra("name");
+        String sn = getIntent().getStringExtra("surname");
+        String cl = getIntent().getStringExtra("class");
+        String gn = getIntent().getStringExtra("gender");
+        String hb = getIntent().getStringExtra("hobbies");
+        String mk = getIntent().getStringExtra("marks");
+
+        tv1.setText(nm);
+        tv2.setText(sn);
+        tv3.setText(cl);
+        tv4.setText(gn);
+        tv5.setText(hb);
+        tv6.setText(mk);
+    }
+}
+
+-------------------------------------------------------------------
+
+SLIP NO - 4,9
+
+Q2. Create an android Application for performing the following operation on the table 
+Customer (id, name, address, phno). (use SQLite database)
+i) Insert New Customer Details.
+ii) Show All the Customer Details on Toast Message. [20 Marks]
+
+XML(activity_main.xml)
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Company Details"
+        android:id="@+id/com"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="?attr/colorPrimary"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/e1"
+        android:textSize="25dp"
+        android:hint="Enter Company id: "
+        android:layout_below="@+id/com"
+        android:layout_marginTop="20sp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/e2"
+        android:textSize="25dp"
+        android:hint="Enter Company Name: "
+        android:layout_below="@+id/e1"
+        android:layout_marginTop="20sp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/e3"
+        android:textSize="25dp"
+        android:hint="Enter Company Address: "
+        android:layout_below="@+id/e2"
+        android:layout_marginTop="20sp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/e4"
+        android:textSize="25dp"
+        android:hint="Enter Company Phone No: "
+        android:layout_below="@+id/e3"
+        android:layout_marginTop="20sp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert"
+        android:id="@+id/b1"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="100dp"
+        android:layout_below="@+id/e4" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/e4"
+        android:layout_marginTop="21dp"
+        android:layout_marginLeft="200dp"
+        android:id="@+id/b2"
+        android:text="Show" />
+
+</RelativeLayout>
+
+JAVA(MainActivity.java)
+package com.example.company;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.os.Message;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText e1, e2, e3, e4;
+    Button b1, b2;
+
+    DatabaseCompany mydb;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mydb = new DatabaseCompany(this);
+
+        e1 = findViewById(R.id.et1);
+        e2 = findViewById(R.id.et2);
+        e3 = findViewById(R.id.et3);
+        e4 = findViewById(R.id.et4);
+        b1 = findViewById(R.id.bt1);
+        b2 = findViewById(R.id.bt2);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isInserted = mydb.insertData(Integer.parseInt(e1.getText().toString()), e2.getText().toString(), e3.getText().toString(), Long.parseLong(e4.getText().toString()));
+
+                if (isInserted) {
+                    Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Data Not Inserted", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cursor res = mydb.getAllData();
+                if (res.getCount() == 0) {
+                    showMessage("Error", "Nothing found");
+                    return;
+                }
+
+                StringBuffer buffer = new StringBuffer();
+                while (res.moveToNext()) {
+                    buffer.append("Id:").append(res.getInt(0)).append("\n");
+                    buffer.append("name:").append(res.getString(1)).append("\n");
+                    buffer.append("address:").append(res.getString(2)).append("\n");
+                    buffer.append("phoneno:").append(res.getLong(3)).append("\n");
+                }
+				
+				//For Displaying the Data in Toast
+				while (res.moveToNext()){
+                    String message = "Id: " + res.getInt(0) + "\n" +
+                            "Name: " + res.getString(1) + "\n" +
+                            "Address: " + res.getString(2) + "\n" +
+                            "Phone No: " + res.getLong(3);
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                }
+				
+                showMessage("Data", buffer.toString());
+            }
+        });
+    }
+
+    private void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title); // Fixed: Set title to the provided title string
+        builder.setMessage(message); // Fixed: Set message to the provided message string
+        builder.show();
+    }
+}
+
+JAVA(DatabaseCompany.java)
+package com.example.company;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DatabaseCompany extends SQLiteOpenHelper {
+    public static final String DATABASE_NAME = "CompanyInfo.db";
+    public static final String TABLE_NAME = "Company";
+    public static final String COLUMN_ID = "id";
+    public static final String COMPANY_NAME = "name";
+    public static final String COMPANY_ADDRESS = "address";
+    public static final String PHONE_NUMBER = "mobile_number"; 
+
+    public DatabaseCompany(Context context) {
+        super(context, DATABASE_NAME, null, 1);
+    }
+
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE company (id INTEGER PRIMARY KEY, name VARCHAR(20), address VARCHAR(20), mobile_number INTEGER(10))");
+    }
+
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS company");
+        onCreate(db);
+    }
+
+    public boolean insertData(int id, String name, String address, long mobileNumber) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ID, id);
+        contentValues.put(COMPANY_NAME, name);
+        contentValues.put(COMPANY_ADDRESS, address);
+        contentValues.put(PHONE_NUMBER, mobileNumber); 
+        db.insert("company", null, contentValues);
+        return true;
+    }
+
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM company", null);
+        return res;
+    }
+}
+
+-------------------------------------------------------------------
+
+SLIP NO - 5
+
+Q2. Create application to demonstrate file explorer (Use ListView). [20 Marks]
+
+-------------------------------------------------------------------
+
+SLIP NO - 6,10
+Q2. Demonstrate Array Adapter using List View to display list of fruits. [20 Marks]
+
+XML
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv"
+        android:divider="@color/black"
+        android:dividerHeight="1dp" />
+
+</RelativeLayout>
+
+JAVA
+package com.example.listview;
+
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+public class MainActivity extends ListActivity {
+
+    String []fruit = {"Apple","Orange","Watermelon","StrawBerry","Pear","Mango"};
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ArrayAdapter arr = new ArrayAdapter(this, android.R.layout.simple_list_item_1,fruit);
+        setListAdapter(arr);
+    }
+    public void onListItemClick(ListView parent, View v, int pos, long id){
+        Toast.makeText(getBaseContext(),"You've Selected: "+fruit[pos],Toast.LENGTH_SHORT).show();
+    }
+}
+
+-------------------------------------------------------------------
+
+SLIP NO - 7,17
+
+Q2. Display a list of bank names in a spinner and whenever you select an [20 Marks]
+item the value will be displayed using toast on Mobile screen. 
+
+XML
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="150dp"
+        android:id="@+id/spinner" />
+
+</LinearLayout>
+
+JAVA
+package com.example.a17q1bank;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    Spinner spinner;
+    String []banks = {"HDFC", "SBI", "BOI", "OBC", "PNB"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+       spinner = findViewById(R.id.spinner);
+       ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,banks);
+       spinner.setAdapter(adapter);
+       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView arg0, View view, int position, long id) {
+               int pos = arg0.getSelectedItemPosition();
+               Toast.makeText(MainActivity.this,"You have Clicked this Bank: "+banks[pos],Toast.LENGTH_LONG).show();
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+
+           }
+       });
+    }
+}
+
+-------------------------------------------------------------------
+
+SLIP NO - 8
+Q2. Design an Android Portrait and Landscape Screen Layout example [20 Marks]
+
+XML (layout/activity_main.xml)
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Convert Interest Rate"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate to Convert %"
+        android:textSize="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignBaseline="@+id/e1"
+        android:layout_marginTop="30sp"
+        android:id="@+id/tv2" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/e1"
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/tv2"
+        android:layout_marginTop="30sp"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rgroup"
+        android:layout_below="@+id/e1">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rb1"
+                android:checked="true"
+                android:text="Yearly to Monthly" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb2"
+            android:checked="false"
+            android:text="Monthly to Yearly" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b1"
+        android:text="CONVERT"
+        android:layout_below="@+id/rgroup" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv3"
+        android:layout_marginTop="20sp"
+        android:textSize="20sp"
+        android:layout_below="@+id/b1" />
+</RelativeLayout>
+
+XML (land/activity_main.xml)
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Convert Interest Rate"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate to Convert %"
+        android:textSize="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignBaseline="@+id/e1"
+        android:layout_marginTop="30sp"
+        android:id="@+id/tv2" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/e1"
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/tv2"
+        android:layout_marginTop="30sp"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rgroup"
+        android:layout_below="@+id/e1">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rb1"
+                android:checked="true"
+                android:text="Yearly to Monthly" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb2"
+            android:checked="false"
+            android:text="Monthly to Yearly" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/b1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:text="CONVERT" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv3"
+            android:layout_marginTop="180dp"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+JAVA
+package com.example.a8q2landscape;
+
+import static java.lang.Math.pow;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    Button b1;
+    RadioButton rb1,rb2;
+    EditText e1;
+
+    TextView tv3;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        rb1 = findViewById(R.id.rb1);
+        rb2 = findViewById(R.id.rb2);
+        e1 = findViewById(R.id.e1);
+        tv3 = findViewById(R.id.tv3);
+        b1 = findViewById(R.id.b1);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double IR = 0.0;
+                double CR = 0.0;
+                IR = Double.parseDouble(e1.getText().toString()) / 100.0;
+                if(rb2.isChecked()) {
+                    CR = (pow((1.0+IR),(1.0/12.0)) - 1.0) * 100.0;
+                } else {
+                    CR = (pow((1.0 + IR),12)-1.0) *100.0;
+                }
+                tv3.setText(String.format("Converted Rate is: %1$.4f%%", CR));
+            }
+        });
+
+    }
+}
+
+-------------------------------------------------------------------
+
+SLIP NO - 12
+
+Q2. Create a custom "Contact" layout to hold multiple pieces of information,
+including: Photo, Name, Contact Number, E-mail id. [20 Marks]
+
+-------------------------------------------------------------------
+
+SLIP NO - 14
+
+Q2. Create an application to accept Movie details like Name, Release Year,
+Collection and display the same information on the next activity. [20 Marks]
+ 
+-------------------------------------------------------------------
+
+SLIP NO - 15
+
+Q2. Create First Activity to accept information like Employee First Name, Middle Name, Last Name,Salary, Address, Email ID 
+and display all information on Second Activity when user click on Submit button. [20 Marks]
+
+-------------------------------------------------------------------
+
+SLIP NO - 16
+
+Q2. Create an Android Application that Demonstrate Time Picker and display [20 Marks]
+Selected Time on TextView.
+
+XML
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tp"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/b1"
+        android:text="Set Time"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:id="@+id/tv"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="50dp" />
+
+</LinearLayout>
+
+JAVA
+package com.example.a16q2timepicker;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    TimePicker tp;
+    Button b1;
+    TextView tv;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        tp = findViewById(R.id.tp);
+        tv = findViewById(R.id.tv);
+        b1 = findViewById(R.id.b1);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tp.setIs24HourView(true);
+                tv.setText("Selected Time is " + tp.getHour()+ ":" + tp.getMinute());
+            }
+        });
+    }
+}
+
+-------------------------------------------------------------------
+
+SLIP NO - 18,19 
+
+Q2. Create an android application to perform Zoom In, Zoom Out operations on Google Map 
+and display touchable location (latitude and longitude)using Toast message.	[20 Marks]
+
+JAVA(MapsActivity.java)
+package com.example.a1819googlemaps;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+
+import android.os.Bundle;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.a1819googlemaps.databinding.ActivityMapsBinding;
+
+import org.jetbrains.annotations.NotNull;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+    private ActivityMapsBinding binding;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng latLng) {
+                Toast.makeText(getApplicationContext(),"Latitude: "+ latLng.latitude + "\nLongitude: "+ latLng.longitude,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
+-------------------------------------------------------------------
+
+					BEST OF LUCK !!!
+	
+-------------------------------------------------------------------

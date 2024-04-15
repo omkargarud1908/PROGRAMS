@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <RelativeLayout
+        android:id="@+id/background_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#4F434343">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_marginLeft="125dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/tv1"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:src="@drawable/contact"
+        android:layout_below="@+id/tv1"
+        android:id="@+id/img1"
+        android:background="#467A6D6D"
+        />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv1"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/img1"
+            android:text="Raviraj Salunkhe"
+            android:textSize="30dp"
+
+            android:textStyle="bold" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+91 8554891453"
+        android:id="@+id/tv3"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/img1"
+        android:background="#46000000"
+        />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+
+        android:src="@drawable/call"
+        android:layout_toRightOf="@+id/tv3"
+        android:layout_below="@id/tv2"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="20dp"
+        android:id="@id/call1"
+        />
+
+   <ImageView
+       android:layout_width="60dp"
+       android:layout_height="50dp"
+       android:src="@drawable/massege"
+       android:layout_toRightOf="@+id/call1"
+       android:layout_below="@+id/tv2"
+       android:layout_marginTop="120dp"
+       android:id="@+id/img2"
+       />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ravi123@gmail.com"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tv3"
+        android:id="@+id/tv4"
+        />
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/massege"
+        android:layout_toRightOf="@+id/tv4"
+        android:layout_below="@+id/img2"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        />
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

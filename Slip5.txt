@@ -1,0 +1,128 @@
+package com.example.slip5q2;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.location.altitude.AltitudeConverter;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridLayout;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    Integer[] imageIDs = {
+            R.drawable.img1,
+            R.drawable.img2,
+            R.drawable.img3,
+            R.drawable.img4,
+            R.drawable.img5,
+            R.drawable.img6,
+            R.drawable.img7,
+            R.drawable.img8,
+            R.drawable.img9
+
+    };
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        GridView gridView = findViewById(R.id.gridview);
+        gridView.setAdapter(new ImageAdapter(this));
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getBaseContext(), "pic" + (position + 1) + "selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    public class ImageAdapter extends BaseAdapter {
+        private Context context;
+
+        public ImageAdapter(Context c) {
+            context = c;
+        }
+
+        public int getCount() {
+            return imageIDs.length;
+        }
+
+        public Object getItem(int position) {
+            return null;
+        }
+
+        public long getItemId(int position) {
+            return position; // Not needed for this example
+        }
+
+        @Override
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ImageView imageView;
+
+            if (convertView == null) {
+                imageView = new ImageView(context);
+                imageView.setLayoutParams(new GridView.LayoutParams(90, 90)); // Adjust layout parameters as needed
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setPadding(5, 5, 5, 5);
+            } else {
+                imageView = (ImageView) convertView;
+            }
+
+            imageView.setImageResource(imageIDs[position]);
+            return imageView;
+        }
+
+    }
+
+}
+
+
+XML.............
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Images"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:columnWidth="90dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:id="@+id/gridview"/>
+
+
+
+
+    
+</LinearLayout>
